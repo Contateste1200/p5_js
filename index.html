@@ -1,0 +1,31 @@
+var cor; // Declare a variável cor
+var circuloX;
+var circuloY;
+
+function setup() {
+  createCanvas(500, 500);
+  background('blue');
+  cor = color(255, 0, 0); // Inicializa a cor como vermelha
+  circuloX = [0, 0, 0];
+  circuloY = [random(height), random(height), random(height)];
+}
+
+function draw() {
+  fill(cor); // Preenche a figura com a cor atual
+  
+  for (var contador in circuloX) {
+    circle(circuloX[contador], circuloY[contador], 30); // Círculo(posx, posy, diâmetro)
+
+    circuloX[contador] += random(0, 3); // Atualiza a posição do círculo
+    circuloY[contador] += random(-3, 3);
+    
+    if (circuloX[contador] >= width) {
+      circuloX[contador] = 0;
+      circuloY[contador] = random(height);
+    }
+  }
+  
+  if (mouseIsPressed) {
+    cor = color(random(255), random(255), random(255)); // Muda a cor ao clicar
+  }
+}
